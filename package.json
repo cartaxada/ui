@@ -1,0 +1,44 @@
+{
+  "name": "Cartaxada",
+  "version": "1.0.0",
+  "description": "App to help organizing of the cartaxo's biannual family reunion",
+  "scripts": {
+    "start": "webpack-dev-server --inline --progress --port 8080",
+    "build": "rimraf dist && webpack --config config/webpack.prod.js --progress --profile --bail",
+    "postinstall": "typings install"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@angular/common": "2.0.0-rc.6",
+    "@angular/compiler": "2.0.0-rc.6",
+    "@angular/core": "2.0.0-rc.6",
+    "@angular/forms": "2.0.0-rc.6",
+    "@angular/http": "2.0.0-rc.6",
+    "@angular/platform-browser": "2.0.0-rc.6",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.6",
+    "@angular/router": "3.0.0-rc.2",
+    "core-js": "^2.4.1",
+    "rxjs": "5.0.0-beta.11",
+    "zone.js": "^0.6.17"
+  },
+  "devDependencies": {
+    "css-loader": "^0.23.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.8.5",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.15.0",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
+    "ts-loader": "^0.8.1",
+    "typescript": "^1.8.10",
+    "typings": "^1.0.4",
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cartaxada/ui.git"
+  }
+}
