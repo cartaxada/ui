@@ -1,3 +1,7 @@
 dist/
 node_modules/
 typings/
+
+# Typescript compiled files
+*.js
+*.js.map
