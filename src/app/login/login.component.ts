@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Configuration } from '../app.configuration';
 
+const AWS = require('aws-sdk');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 @Component({
@@ -16,6 +17,8 @@ export class LoginComponent {
       Username : this.username,
       Password : this.password,
     };
+
+    AWS.config.region = 'us-east-1';
 
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
