@@ -2,7 +2,7 @@
 
 .login-page {
   width: 360px;
-  padding: 20% 0 0;
+  padding: 10% 0 0;
   margin: auto;
 }
 
@@ -28,13 +28,6 @@
 
 .form button {
   text-transform: uppercase;
-  background: #4CAF50;
   width: 100%;
-  border: 0;
   padding: 15px;
-  color: #FFFFFF;
-}
-
-.form button:hover,.form button:active,.form button:focus {
-  background: #43A047;
 }
