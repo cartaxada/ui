@@ -21,7 +21,12 @@
     "@angular/router": "3.0.0-rc.2",
     "core-js": "^2.4.1",
     "rxjs": "5.0.0-beta.11",
-    "zone.js": "^0.6.17"
+    "zone.js": "^0.6.17",
+    "amazon-cognito-identity-js": "^1.2.0",
+    "moment": "^2.14.1",
+    "aws-sdk": "^2.5.5",
+    "jsbn": "^0.1.0",
+    "sjcl": "^1.0.3"
   },
   "devDependencies": {
     "css-loader": "^0.23.1",
@@ -30,6 +35,7 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.15.0",
     "raw-loader": "^0.5.1",
+    "exports-loader": "^0.6.3",
     "rimraf": "^2.5.2",
     "style-loader": "^0.13.1",
     "ts-loader": "^0.8.1",

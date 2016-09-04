@@ -1,7 +1,9 @@
 dist/
 node_modules/
 typings/
+.env
+npm-debug.log
 
 # Typescript compiled files
-*.js
-*.js.map
+src/**/*.js
+src/**/*.js.map
