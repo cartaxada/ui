@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Configuration } from '../app.configuration';
 
-var AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 @Component({
   template: require('./login.template.html'),
@@ -12,15 +12,15 @@ export class LoginComponent {
   password: string;
 
   login() {
-    var authenticationData = {
+    const authenticationData = {
       Username : this.username,
       Password : this.password,
     };
 
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
-    var userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
-    var userData = { Username : this.username, Pool : userPool };
-    var cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+    const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
+    const userData = { Username : this.username, Pool : userPool };
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: function (result: any) {
         console.log('access token + ' + result.getAccessToken().getJwtToken());
