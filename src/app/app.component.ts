@@ -6,3 +6,8 @@ import '../../public/css/styles.css';
   template: require('./app.component.html')
 })
 export class AppComponent { }
+
+@Component({
+  template: require('./secureapp.component.html')
+})
+export class SecureAppComponent { }
