@@ -18,8 +18,6 @@ export class LoginComponent {
       Password : this.password,
     };
 
-    AWS.config.region = 'us-east-1';
-
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
     const userData = { Username : this.username, Pool : userPool };
