@@ -31,7 +31,9 @@ module.exports = webpackMerge(commonConfig, {
     new ExtractTextPlugin('[name].[hash].css'),
     new webpack.DefinePlugin({
       'process.env': {
-        'ENV': JSON.stringify(ENV)
+        'ENV': JSON.stringify(ENV),
+        'USER_POOL_ID': JSON.stringify(process.env.USER_POOL_ID),
+        'CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
       }
     })
   ]
