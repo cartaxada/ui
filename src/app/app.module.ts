@@ -4,6 +4,7 @@ import { AppComponent, SecureAppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { NavBarModule } from './navbar/navbar.module';
 import { ConstantModule } from './constant/constant.module';
+import { FamilyMemberModule } from './family-member/fm.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { CognitoService } from './service/cognito.service';
 
@@ -13,7 +14,8 @@ import { CognitoService } from './service/cognito.service';
     routing,
     LoginModule,
     NavBarModule,
-    ConstantModule
+    ConstantModule,
+    FamilyMemberModule
   ],
   declarations: [
     AppComponent,

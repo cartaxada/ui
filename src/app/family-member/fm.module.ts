@@ -1,21 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
-import { NavBarComponent } from './navbar.component';
+import { FamilyMemberListComponent } from './fm-list.component';
+import { familyMemberRouting } from './fm.routing';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
-  ],
-  exports: [
-    NavBarComponent
+    familyMemberRouting
   ],
   declarations: [
-    NavBarComponent
+    FamilyMemberListComponent
   ]
 })
-export class NavBarModule {}
+export class FamilyMemberModule {}
