@@ -5,6 +5,7 @@ import { LoginModule } from './login/login.module';
 import { NavBarModule } from './navbar/navbar.module';
 import { ConstantModule } from './constant/constant.module';
 import { routing, appRoutingProviders } from './app.routing';
+import { CognitoService } from './service/cognito.service';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { routing, appRoutingProviders } from './app.routing';
     SecureAppComponent
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    CognitoService
   ],
   bootstrap: [ AppComponent ]
 })
