@@ -27,6 +27,7 @@ export class LoginComponent {
     cognitoUser.authenticateUser(authenticationDetails, this);
   }
 
+  // tslint:disable
   private onSuccess(result: any) {
     console.log('access token + ' + result.getAccessToken().getJwtToken());
     this.router.navigate(['/secure']);
@@ -35,5 +36,6 @@ export class LoginComponent {
   private onFailure(err: any) {
     alert(err);
   }
+  // tslint:enable
 
 }
