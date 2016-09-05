@@ -7,6 +7,8 @@ export const Configuration = {
     ClientId : process.env.CLIENT_ID
   },
 
-  identityLoginKey : 'cognito-idp.us-east-1.amazonaws.com/' + process.env.USER_POOL_ID
+  identityLoginKey : 'cognito-idp.us-east-1.amazonaws.com/' + process.env.USER_POOL_ID,
+
+  dynamoDbTable: process.env.DYNAMODB_TABLE
 
 };

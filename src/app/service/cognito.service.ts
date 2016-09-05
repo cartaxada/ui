@@ -3,6 +3,7 @@ import { Configuration } from '../app.configuration';
 
 const AWS = require('aws-sdk');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
+const jwtDecode = require('jwt-decode');
 
 @Injectable()
 export class CognitoService {
@@ -52,6 +53,22 @@ export class CognitoService {
       });
     }
 
+  }
+
+  getCurrentUserName(): Promise<string> {
+    const cognitoUser = this.getCurrentUser();
+
+    return new Promise((resolve, reject) => {
+      if (cognitoUser != null) {
+        cognitoUser.getSession(function(err: any, session: any) {
+          if (err) { reject(err); }
+          const decoded = jwtDecode(session.getIdToken().getJwtToken());
+          resolve(decoded['cognito:username']);
+        });
+      } else {
+        reject('NO_USER');
+      }
+    });
   }
 
   private getCurrentUser() {

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { FamilyMemberListComponent } from './fm-list.component';
 import { familyMemberRouting } from './fm.routing';
+import { FamilyListResolver } from './fm-list.resolver.ts';
 
 @NgModule({
   imports: [
@@ -13,6 +14,9 @@ import { familyMemberRouting } from './fm.routing';
   ],
   declarations: [
     FamilyMemberListComponent
+  ],
+  providers: [
+    FamilyListResolver
   ]
 })
 export class FamilyMemberModule {}

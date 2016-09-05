@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { FamilyMemberListComponent } from './fm-list.component';
 import { SecureAppComponent } from '../app.component';
 import { AuthGuard } from '../service/auth-guard.service';
+import { FamilyListResolver } from './fm-list.resolver';
 
 const familyMemberRoutes: Routes = [
   {
@@ -10,7 +11,13 @@ const familyMemberRoutes: Routes = [
     component: SecureAppComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: '', component: FamilyMemberListComponent }
+      {
+        path: '',
+        component: FamilyMemberListComponent,
+        resolve: {
+          familyMembersResult: FamilyListResolver
+        }
+      }
     ]
   }
 ];

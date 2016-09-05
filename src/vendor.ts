@@ -11,3 +11,4 @@ import 'rxjs';
 // You can import js, ts, css, sass, ...
 import 'jsbn';
 import 'sjcl';
+import 'jwt-decode';

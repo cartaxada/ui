@@ -30,6 +30,8 @@ module.exports = webpackMerge(commonConfig, {
         'ENV': JSON.stringify(ENV),
         'USER_POOL_ID': JSON.stringify(process.env.USER_POOL_ID),
         'CLIENT_ID': JSON.stringify(process.env.CLIENT_ID),
+        'IDENTITY_POOL_ID': JSON.stringify(process.env.IDENTITY_POOL_ID),
+        'DYNAMODB_TABLE': JSON.stringify(process.env.DYNAMODB_TABLE)
       }
     })
   ]
