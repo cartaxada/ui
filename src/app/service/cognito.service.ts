@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Configuration } from '../app.configuration';
 
+const AWS = require('aws-sdk');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 @Injectable()
@@ -24,6 +25,33 @@ export class CognitoService {
         resolve(false);
       }
     });
+  }
+
+  refresh() {
+    AWS.config.region = 'us-east-1';
+
+    const cognitoUser = this.getCurrentUser();
+
+    if (cognitoUser != null) {
+      cognitoUser.getSession(function(err: any, session: any) {
+        if (err) {
+          alert(err);
+          return;
+        }
+        if (session.isValid()) {
+          const loginsHash = {};
+          loginsHash[Configuration.identityLoginKey] = session.getIdToken().getJwtToken();
+
+          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+              IdentityPoolId : Configuration.identityPoolId,
+              Logins : loginsHash
+          });
+        } else {
+          this.logOut();
+        }
+      });
+    }
+
   }
 
   private getCurrentUser() {

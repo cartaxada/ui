@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Configuration } from '../app.configuration';
 
+const AWS = require('aws-sdk');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 @Component({
@@ -29,7 +30,13 @@ export class LoginComponent {
 
   // tslint:disable
   private onSuccess(result: any) {
-    console.log('access token + ' + result.getAccessToken().getJwtToken());
+    const loginsHash = {};
+    loginsHash[Configuration.identityLoginKey] = result.getIdToken().getJwtToken();
+
+    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+        IdentityPoolId : Configuration.identityPoolId,
+        Logins : loginsHash
+    });
     this.router.navigate(['/home']);
   }
 
