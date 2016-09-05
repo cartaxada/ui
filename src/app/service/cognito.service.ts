@@ -6,9 +6,13 @@ const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 @Injectable()
 export class CognitoService {
 
+  logOut() {
+    const cognitoUser = this.getCurrentUser();
+    cognitoUser.signOut();
+  }
+
   isLoggedIn(): Promise<boolean> {
-    const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
-    const cognitoUser = userPool.getCurrentUser();
+    const cognitoUser = this.getCurrentUser();
 
     return new Promise((resolve, reject) => {
       if (cognitoUser != null) {
@@ -20,6 +24,11 @@ export class CognitoService {
         resolve(false);
       }
     });
+  }
+
+  private getCurrentUser() {
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
+    return userPool.getCurrentUser();
   }
 
 }
