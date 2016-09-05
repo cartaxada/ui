@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Configuration } from '../app.configuration';
 
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
@@ -11,6 +12,8 @@ export class LoginComponent {
   username: string;
   password: string;
 
+  constructor(private router: Router) {}
+
   login() {
     const authenticationData = {
       Username : this.username,
@@ -21,15 +24,16 @@ export class LoginComponent {
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
     const userData = { Username : this.username, Pool : userPool };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: function (result: any) {
-        console.log('access token + ' + result.getAccessToken().getJwtToken());
-      },
+    cognitoUser.authenticateUser(authenticationDetails, this);
+  }
 
-      onFailure: function (err: any) {
-        alert(err);
-      },
-    });
+  private onSuccess(result: any) {
+    console.log('access token + ' + result.getAccessToken().getJwtToken());
+    this.router.navigate(['/secure']);
+  }
+
+  private onFailure(err: any) {
+    alert(err);
   }
 
 }
