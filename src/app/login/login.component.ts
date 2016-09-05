@@ -30,7 +30,7 @@ export class LoginComponent {
   // tslint:disable
   private onSuccess(result: any) {
     console.log('access token + ' + result.getAccessToken().getJwtToken());
-    this.router.navigate(['/secure']);
+    this.router.navigate(['/home']);
   }
 
   private onFailure(err: any) {
