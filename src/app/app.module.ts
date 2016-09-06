@@ -5,6 +5,7 @@ import { LoginModule } from './login/login.module';
 import { NavBarModule } from './navbar/navbar.module';
 import { ConstantModule } from './constant/constant.module';
 import { FamilyMemberModule } from './family-member/fm.module';
+import { SearchModule } from './search/search.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { CognitoService } from './service/cognito.service';
 import { DynamoService } from './service/dynamo.service';
@@ -17,7 +18,8 @@ import { S3Service } from './service/s3.service';
     LoginModule,
     NavBarModule,
     ConstantModule,
-    FamilyMemberModule
+    FamilyMemberModule,
+    SearchModule
   ],
   declarations: [
     AppComponent,
