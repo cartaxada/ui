@@ -4,16 +4,19 @@
     <div class="row">
       <div class="col-md-3">
         <b>Foto atual:</b>
-        <img class="img-responsive" src="https://s3.amazonaws.com/{{pictureBucket}}/250x250/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
+        <img class="img-responsive"
+              src="https://s3.amazonaws.com/{{pictureBucket}}-resized/250x250/{{familyMember.familyId}}"
+              onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
       </div>
 
       <div class="col-md-3">
         <b>Submeter:</b>
-        <input type="file">
+        <input type="file" (change)="fileChangeEvent($event)" accept="image/png, image/jpeg">
         <br />
-        <button type="button" class="btn btn-success">
-          <span class="glyphicon glyphicon-ok"></span>
-          Enviar
+        <button type="button" class="btn btn-success" (click)="submitPic()">
+          <span *ngIf="!uploading" class="glyphicon glyphicon-ok"></span>
+          <span *ngIf="uploading" class="glyphicon glyphicon-refresh"></span>
+          {{ uploading ? 'Enviando...' : 'Enviar' }}
         </button>
         <br />
         <br />

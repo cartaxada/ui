@@ -8,6 +8,7 @@ import { FamilyMemberModule } from './family-member/fm.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { CognitoService } from './service/cognito.service';
 import { DynamoService } from './service/dynamo.service';
+import { S3Service } from './service/s3.service';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { DynamoService } from './service/dynamo.service';
   providers: [
     appRoutingProviders,
     CognitoService,
-    DynamoService
+    DynamoService,
+    S3Service
   ],
   bootstrap: [ AppComponent ]
 })
