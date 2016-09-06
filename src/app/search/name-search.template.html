@@ -10,8 +10,13 @@
 </div>
 <br />
 <br />
-<a *ngFor="let familyMember of searchResult"
-    class="list-group-item"
-    [routerLink]="['/family-member', familyMember.familyId]">
-   {{familyMember.name}}
-</a>
+<div class="row">
+  <div class="col-md-3" *ngFor="let familyMember of searchResult">
+     <a class="text-center" [routerLink]="['/family-member', familyMember.familyId]">
+        <img class="img-responsive img-circle center-block" src="https://s3.amazonaws.com/{{pictureBucket}}-resized/150x150/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/150?text=.';">
+        <br/>
+        <p>{{familyMember.name}}</p>
+    </a>
+  </div>
+
+</div>
