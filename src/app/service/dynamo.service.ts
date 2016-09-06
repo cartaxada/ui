@@ -8,7 +8,28 @@ const AWS = require('aws-sdk');
 @Injectable()
 export class DynamoService {
 
-  constructor(private  cognitoService: CognitoService) {}
+  constructor(private cognitoService: CognitoService) {}
+
+  familyMemberView(familyId: string): Promise<FamilyMember[]> {
+    const familyIdParameter = familyId + ':'
+    const params = {
+      TableName: Configuration.dynamoDbTable,
+      FilterExpression: 'begins_with(familyId, :user)',
+      ExpressionAttributeValues: { ':user': familyIdParameter }
+    };
+
+    return new Promise((resolve, reject) => {
+      const dynamodb = new AWS.DynamoDB.DocumentClient();
+      dynamodb.scan(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          resolve([]);
+        }
+        resolve(data.Items);
+      });
+    });
+
+  }
 
   familyMemberList(): Promise<FamilyMember[]> {
     return this.cognitoService.getCurrentUserName()

@@ -1,0 +1,24 @@
+<h3>Sobre</h3>
+<br />
+
+<div *ngFor="let familyMember of familyMembers" class="family-member-view">
+  <div class="row">
+    <div class="col-md-3">
+      <img class="img-responsive" src="https://s3.amazonaws.com/stg-cartaxada-pics/{{familyMember.familyId}}">
+    </div>
+    <div class="col-md-9">
+      <b>Nome:</b> {{familyMember.name}}<br>
+      <b>Apelidos:</b> {{familyMember.nicknames}}<br>
+      <b>Aniversário:</b> {{familyMember.birthday}}<br>
+      <b>Email:</b> {{familyMember.email}}<br>
+      <b>Endereço:</b> {{familyMember.address}}<br>
+      <b>Telefone(s):</b>
+      <ul class="list-group">
+        <li *ngFor="let phone of familyMember.phones" class="list-group-item">
+          ({{phone.ddd}}) {{phone.number}} : {{phone.operator}}
+        </li>
+      </ul>
+    </div>
+
+ </div>
+</div>

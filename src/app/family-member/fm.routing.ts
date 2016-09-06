@@ -4,6 +4,8 @@ import { FamilyMemberListComponent } from './fm-list.component';
 import { SecureAppComponent } from '../app.component';
 import { AuthGuard } from '../service/auth-guard.service';
 import { FamilyListResolver } from './fm-list.resolver';
+import { FamilyMemberResolver } from './fm.resolver';
+import { FamilyMemberViewComponent } from './fm.component';
 
 const familyMemberRoutes: Routes = [
   {
@@ -14,9 +16,12 @@ const familyMemberRoutes: Routes = [
       {
         path: '',
         component: FamilyMemberListComponent,
-        resolve: {
-          familyMembersResult: FamilyListResolver
-        }
+        resolve: { familyMembersResult: FamilyListResolver }
+      },
+      {
+        path: ':familyId',
+        component: FamilyMemberViewComponent,
+        resolve: { familyMembersResult: FamilyMemberResolver }
       }
     ]
   }
