@@ -1,0 +1,32 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Editar Foto</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-3">
+        <b>Foto atual:</b>
+        <img class="img-responsive" src="https://s3.amazonaws.com/{{pictureBucket}}/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
+      </div>
+
+      <div class="col-md-3">
+        <b>Submeter:</b>
+        <input type="file">
+        <br />
+        <button type="button" class="btn btn-success">
+          <span class="glyphicon glyphicon-ok"></span>
+          Enviar
+        </button>
+        <br />
+        <br />
+        <b>Observação:</b> O sistema irá redimensionar a foto para o tamanho máximo de 250x250.
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">Editar Dados</div>
+  <div class="panel-body">
+    Em breve...
+  </div>
+</div>

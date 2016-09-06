@@ -1,7 +1,9 @@
 <h3>Escolha quem deseja editar:</h3>
 <div class="list-group">
 
-  <a *ngFor="let familyMember of familyMembers" class="list-group-item">
+  <a *ngFor="let familyMember of familyMembers"
+      class="list-group-item"
+      [routerLink]="['/family-member', familyMember.familyId, 'edit']">
      {{familyMember.name}}
   </a>
 

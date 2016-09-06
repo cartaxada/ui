@@ -10,6 +10,27 @@ export class DynamoService {
 
   constructor(private cognitoService: CognitoService) {}
 
+  familyMember(familyId: string): Promise<FamilyMember> {
+    this.cognitoService.refresh();
+    const params = {
+      TableName : Configuration.dynamoDbTable,
+      Key: { familyId: familyId }
+    };
+
+    return new Promise((resolve, reject) => {
+      const docClient = new AWS.DynamoDB.DocumentClient();
+      docClient.get(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        } else {
+          resolve(data.Item);
+        }
+      });
+    });
+
+  }
+
   familyMemberView(familyId: string): Promise<FamilyMember[]> {
     this.cognitoService.refresh();
     const familyIdParameter = familyId + ':';
@@ -25,8 +46,9 @@ export class DynamoService {
         if (err) {
           console.log(err);
           resolve([]);
+        } else {
+          resolve(data.Items);
         }
-        resolve(data.Items);
       });
     });
 

@@ -5,7 +5,9 @@ import { SecureAppComponent } from '../app.component';
 import { AuthGuard } from '../service/auth-guard.service';
 import { FamilyListResolver } from './fm-list.resolver';
 import { FamilyMemberResolver } from './fm.resolver';
+import { FamilyMemberToEditResolver } from './fm-edit.resolver';
 import { FamilyMemberViewComponent } from './fm.component';
+import { FamilyMemberEditComponent } from './fm-edit.component';
 
 const familyMemberRoutes: Routes = [
   {
@@ -17,6 +19,11 @@ const familyMemberRoutes: Routes = [
         path: '',
         component: FamilyMemberListComponent,
         resolve: { familyMembersResult: FamilyListResolver }
+      },
+      {
+        path: ':familyId/edit',
+        component: FamilyMemberEditComponent,
+        resolve: { familyMemberResult: FamilyMemberToEditResolver }
       },
       {
         path: ':familyId',
