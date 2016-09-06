@@ -51,7 +51,29 @@ export class DynamoService {
         }
       });
     });
+  }
 
+  searchByName(searchQuery: string): Promise<FamilyMember[]> {
+    this.cognitoService.refresh();
+    const params = {
+      TableName: Configuration.dynamoDbTable,
+      ProjectionExpression: 'familyId, #name',
+      FilterExpression: 'contains(#name, :query) OR contains(nicknames, :query)',
+      ExpressionAttributeNames: { '#name': 'name' },
+      ExpressionAttributeValues: { ':query': searchQuery }
+    };
+
+    return new Promise((resolve, reject) => {
+      const dynamodb = new AWS.DynamoDB.DocumentClient();
+      dynamodb.scan(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          resolve([]);
+        } else {
+          resolve(data.Items);
+        }
+      });
+    });
   }
 
   familyMemberList(): Promise<FamilyMember[]> {

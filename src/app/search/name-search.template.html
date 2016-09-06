@@ -1,10 +1,17 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-      <div class="input-group">
-        <input type="text" class="form-control">
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-        </div>
+    <div class="input-group">
+      <input type="text" class="form-control" (keyup.enter)="search()" [(ngModel)]="searchQuery">
+      <div class="input-group-btn">
+        <button type="button" (click)="search()" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
       </div>
     </div>
+  </div>
 </div>
+<br />
+<br />
+<a *ngFor="let familyMember of searchResult"
+    class="list-group-item"
+    [routerLink]="['/family-member', familyMember.familyId]">
+   {{familyMember.name}}
+</a>
