@@ -4,7 +4,7 @@
 <div *ngFor="let familyMember of familyMembers" class="family-member-view">
   <div class="row">
     <div class="col-md-3">
-      <img class="img-responsive" src="https://s3.amazonaws.com/{{pictureBucket}}/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
+      <img class="img-responsive" src="https://s3.amazonaws.com/{{pictureBucket}}/250x250/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
     </div>
     <div class="col-md-9">
       <b>Nome:</b> {{familyMember.name}}<br>
