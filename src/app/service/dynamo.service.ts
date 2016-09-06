@@ -33,7 +33,10 @@ export class DynamoService {
 
   familyMemberView(familyId: string): Promise<FamilyMember[]> {
     this.cognitoService.refresh();
-    const familyIdParameter = familyId + ':';
+    let familyIdParameter = familyId;
+    if (!familyIdParameter.includes(':')) {
+      familyIdParameter += ':';
+    }
     const params = {
       TableName: Configuration.dynamoDbTable,
       FilterExpression: 'begins_with(familyId, :user)',
