@@ -23,13 +23,104 @@
         <b>Observação:</b> O sistema irá redimensionar a foto para os tamanhos de 150x150 e 250x250.
       </div>
     </div>
-
-
   </div>
 </div>
+
 <div class="panel panel-default">
   <div class="panel-heading">Editar Dados</div>
   <div class="panel-body">
-    Em breve...
+    <div class="form-horizontal">
+
+      <!-- Name -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Nome:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="familyMember.name">
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Email:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="familyMember.email">
+        </div>
+      </div>
+
+      <!-- Birthday -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Aniversário:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="familyMember.birthday">
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Endereço:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" [(ngModel)]="familyMember.address.firstLine">
+          <input type="text" class="form-control" [(ngModel)]="familyMember.address.secondLine">
+          <input type="text" class="form-control" [(ngModel)]="familyMember.address.thirdLine">
+        </div>
+      </div>
+
+      <!-- Phones -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Telefones:</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <div class="col-sm-1">
+              <br>
+              <button type="button" (click)="phone()" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+            <div class="col-sm-3">
+              ddd:<input type="text" [(ngModel)]="newPhone.ddd" class="form-control">
+            </div>
+            <div class="col-sm-3">
+              Numero:<input type="text" [(ngModel)]="newPhone.number" class="form-control">
+            </div>
+            <div class="col-sm-3">
+              Operadora:<input type="text" [(ngModel)]="newPhone.operator" class="form-control">
+            </div>
+          </div>
+          <br>
+          <ul class="list-group">
+            <li *ngFor="let phone of familyMember.phones; let i = index" class="list-group-item clearfix">
+              <a (click)="noPhone(i)"><span class="glyphicon glyphicon-remove"></span></a>
+              ({{phone.ddd}}) {{phone.number}} : {{phone.operator}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Nicknames -->
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Apelidos:</label>
+        <div class="col-sm-10">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button type="button" (click)="nickName()" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span></button>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="newNickname" />
+          </div>
+          <br>
+          <ul class="list-group">
+            <li *ngFor="let nickname of familyMember.nicknames; let i = index" class="list-group-item clearfix">
+              <a (click)="noNickName(i)"><span class="glyphicon glyphicon-remove"></span></a>
+              {{nickname}}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Save Button -->
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button (click)="saveEdit()" class="btn btn-success">Salvar</button>
+        </div>
+      </div>
+
+    </div>
   </div>
 </div>

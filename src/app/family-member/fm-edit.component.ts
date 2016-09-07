@@ -14,6 +14,9 @@ export class FamilyMemberEditComponent implements OnInit {
   pictureToUpload: any;
   uploading: boolean = false;
 
+  newNickname: string;
+  newPhone = { ddd: '', number: '', operator: '' };
+
   constructor(private route: ActivatedRoute, private s3Service: S3Service) { }
 
   ngOnInit() {
@@ -39,6 +42,28 @@ export class FamilyMemberEditComponent implements OnInit {
 
   fileChangeEvent(fileInput: any) {
     this.pictureToUpload = fileInput.target.files[0];
+  }
+
+  nickName() {
+    this.familyMember.nicknames.push(this.newNickname);
+    this.newNickname = '';
+  }
+
+  phone() {
+    this.familyMember.phones.push(this.newPhone);
+    this.newPhone = { ddd: '', number: '', operator: '' };
+  }
+
+  noPhone(phone: any) {
+    this.familyMember.phones.splice(phone, 1);
+  }
+
+  noNickName(nickname: any) {
+    this.familyMember.nicknames.splice(nickname, 1);
+  }
+
+  saveEdit() {
+    console.log(JSON.stringify(this.familyMember));
   }
 
 }
