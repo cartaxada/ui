@@ -28,7 +28,26 @@ export class DynamoService {
         }
       });
     });
+  }
 
+  updateFamilyMember(familyMember: FamilyMember): Promise<FamilyMember> {
+    this.cognitoService.refresh();
+    const params = {
+      TableName : Configuration.dynamoDbTable,
+      Item: familyMember
+    };
+
+    return new Promise((resolve, reject) => {
+      const docClient = new AWS.DynamoDB.DocumentClient();
+      docClient.put(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        } else {
+          resolve(data.Item);
+        }
+      });
+    });
   }
 
   familyMemberView(familyId: string): Promise<FamilyMember[]> {

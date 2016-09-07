@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FamilyMember } from './fm.model';
 import { Configuration } from '../app.configuration';
 import { S3Service } from '../service/s3.service';
+import { DynamoService } from '../service/dynamo.service';
 
 @Component({
   template: require('./fm-edit.template.html')
@@ -17,7 +18,9 @@ export class FamilyMemberEditComponent implements OnInit {
   newNickname: string;
   newPhone = { ddd: '', number: '', operator: '' };
 
-  constructor(private route: ActivatedRoute, private s3Service: S3Service) { }
+  constructor(private route: ActivatedRoute,
+              private s3Service: S3Service,
+              private dynamoService: DynamoService) { }
 
   ngOnInit() {
     this.route.data.forEach((data: { familyMemberResult: FamilyMember }) => {
@@ -73,6 +76,7 @@ export class FamilyMemberEditComponent implements OnInit {
 
   saveEdit() {
     console.log(JSON.stringify(this.familyMember));
+    this.dynamoService.updateFamilyMember(this.familyMember);
   }
 
 }
