@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SecureAppComponent } from '../app.component';
 import { AuthGuard } from '../service/auth-guard.service';
 import { NameSearchComponent } from './name-search.component';
+import { HierarchySearchComponent } from './hierarchy-search.component';
 
 const searchRoutes: Routes = [
   {
@@ -13,6 +14,10 @@ const searchRoutes: Routes = [
       {
         path: 'name',
         component: NameSearchComponent
+      },
+      {
+        path: 'hierarchy',
+        component: HierarchySearchComponent
       }
     ]
   }

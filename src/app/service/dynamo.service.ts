@@ -98,6 +98,52 @@ export class DynamoService {
     });
   }
 
+  initialHierarchy(): Promise<FamilyMember[]> {
+    this.cognitoService.refresh();
+    const params = {
+      TableName: Configuration.dynamoDbTable,
+      ProjectionExpression: 'familyId, #name',
+      FilterExpression: 'hierarchyLevel = :value AND contains(familyId, :cartaxo)',
+      ExpressionAttributeNames: { '#name': 'name' },
+      ExpressionAttributeValues: { ':value': 1, ':cartaxo': ':1' }
+    };
+
+    return new Promise((resolve, reject) => {
+      const dynamodb = new AWS.DynamoDB.DocumentClient();
+      dynamodb.scan(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          resolve([]);
+        } else {
+          resolve(data.Items);
+        }
+      });
+    });
+  }
+
+  membersInHierarchy(level: number, prefix: string): Promise<FamilyMember[]> {
+    this.cognitoService.refresh();
+    const params = {
+      TableName: Configuration.dynamoDbTable,
+      ProjectionExpression: 'familyId, #name',
+      FilterExpression: 'hierarchyLevel = :value AND begins_with(familyId, :user) AND contains(familyId, :cartaxo)',
+      ExpressionAttributeNames: { '#name': 'name' },
+      ExpressionAttributeValues: { ':value': level, ':cartaxo': ':1', ':user': prefix }
+    };
+
+    return new Promise((resolve, reject) => {
+      const dynamodb = new AWS.DynamoDB.DocumentClient();
+      dynamodb.scan(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          resolve([]);
+        } else {
+          resolve(data.Items);
+        }
+      });
+    });
+  }
+
   familyMemberList(): Promise<FamilyMember[]> {
     return this.cognitoService.getCurrentUserName()
           .then((res) => {
