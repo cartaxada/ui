@@ -11,10 +11,7 @@
       <b>Apelidos:</b> {{familyMember.nicknames}}<br>
       <b>Aniversário:</b> {{familyMember.birthday}}<br>
       <b>Email:</b> {{familyMember.email}}<br>
-      <b>Endereço:</b><br>
-      {{familyMember.address.firstLine}}<br>
-      {{familyMember.address.secondLine}}<br>
-      {{familyMember.address.thirdLine}}<br>
+      <b>Endereço:</b>{{familyMember.address}}<br>
       <b>Telefone(s):</b>
       <ul class="list-group">
         <li *ngFor="let phone of familyMember.phones" class="list-group-item">

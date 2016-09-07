@@ -6,6 +6,7 @@ import { NavBarModule } from './navbar/navbar.module';
 import { ConstantModule } from './constant/constant.module';
 import { FamilyMemberModule } from './family-member/fm.module';
 import { SearchModule } from './search/search.module';
+import { PDFModule } from './pdf/pdf.module';
 import { routing, appRoutingProviders } from './app.routing';
 import { CognitoService } from './service/cognito.service';
 import { DynamoService } from './service/dynamo.service';
@@ -19,7 +20,8 @@ import { S3Service } from './service/s3.service';
     NavBarModule,
     ConstantModule,
     FamilyMemberModule,
-    SearchModule
+    SearchModule,
+    PDFModule
   ],
   declarations: [
     AppComponent,

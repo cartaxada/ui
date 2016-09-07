@@ -5,12 +5,14 @@
         <li><a [routerLink]="['/home']">Inicio</a></li>
 
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Busca <span class="caret"></span></a>
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Buscar Pessoa<span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a [routerLink]="['/search/name']">Nome</a></li>
-            <li><a [routerLink]="['/search/hierarchy']">Hierarquia</a></li>
+            <li><a [routerLink]="['/search/name']">Por Nome</a></li>
+            <li><a [routerLink]="['/search/hierarchy']">Por Hierarquia</a></li>
           </ul>
         </li>
+
+        <li><a [routerLink]="['/generate-contacts-pdf']">Gerar Agenda</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a [routerLink]="['/family-member']">Editar</a></li>
