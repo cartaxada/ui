@@ -1,5 +1,8 @@
 <div class="login-page">
   <div class="form">
+    <div *ngIf="message" class="alert alert-danger" role="alert">
+      {{message}}
+    </div>
     <form class="login-form">
       <input type="text" placeholder="usuario" [(ngModel)]="username" name="username" >
       <input type="password" placeholder="senha" [(ngModel)]="password" name="password" >

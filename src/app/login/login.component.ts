@@ -13,9 +13,14 @@ export class LoginComponent {
   username: string;
   password: string;
 
+  message: string;
+
   constructor(private router: Router) {}
 
   login() {
+    if (!this.username || !this.password) {
+      return;
+    }
     const authenticationData = {
       Username : this.username,
       Password : this.password,
@@ -41,7 +46,13 @@ export class LoginComponent {
   }
 
   private onFailure(err: any) {
-    alert(err);
+    if (err.code === 'UserNotFoundException') {
+      this.message = 'Usuário não existe';
+    } else if (err.code === 'NotAuthorizedException') {
+      this.message = 'Combinação usuário e senha invalida';
+    } else {
+      this.message = 'Algo estranho aconteçeu :(';
+    }
   }
   // tslint:enable
 
