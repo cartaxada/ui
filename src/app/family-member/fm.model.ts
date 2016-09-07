@@ -4,7 +4,8 @@ export class FamilyMember {
     public familyId: string,
     public name: string,
     public nicknames: string[],
-    public phones: any[]
+    public phones: any[],
+    public address: any
   ) { }
 
 }

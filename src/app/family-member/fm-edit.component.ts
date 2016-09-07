@@ -22,6 +22,15 @@ export class FamilyMemberEditComponent implements OnInit {
   ngOnInit() {
     this.route.data.forEach((data: { familyMemberResult: FamilyMember }) => {
       this.familyMember = data.familyMemberResult;
+      if (!this.familyMember.address) {
+        this.familyMember.address = {};
+      }
+      if (!this.familyMember.nicknames) {
+        this.familyMember.nicknames = [];
+      }
+      if (!this.familyMember.phones) {
+        this.familyMember.phones = [];
+      }
     });
   }
 
@@ -54,11 +63,11 @@ export class FamilyMemberEditComponent implements OnInit {
     this.newPhone = { ddd: '', number: '', operator: '' };
   }
 
-  noPhone(phone: any) {
+  noPhone(phone: number) {
     this.familyMember.phones.splice(phone, 1);
   }
 
-  noNickName(nickname: any) {
+  noNickName(nickname: number) {
     this.familyMember.nicknames.splice(nickname, 1);
   }
 
