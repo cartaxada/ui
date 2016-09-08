@@ -10,7 +10,9 @@
       </div>
 
       <div class="col-md-3">
-        <b>Submeter:</b>
+        <b>Submeter:</b> <br>Arquivo com no máximo 1MB
+        <br>
+        <br>
         <input type="file" (change)="fileChangeEvent($event)" accept="image/png, image/jpeg">
         <br />
         <button type="button" class="btn btn-success" (click)="submitPic()">
@@ -21,6 +23,14 @@
         <br />
         <br />
         <b>Observação:</b> O sistema irá redimensionar a foto para os tamanhos de 150x150 e 250x250.
+        <br />
+        <br />
+        <div *ngIf="maxSizeExceeded" class="text-center alert alert-danger">
+          Tamanho máximo: 1MB
+        </div>
+        <div *ngIf="successfulUpload" class="text-center alert alert-info">
+          Enviado com Sucesso
+        </div>
       </div>
     </div>
   </div>

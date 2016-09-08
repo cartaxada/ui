@@ -18,6 +18,9 @@ export class FamilyMemberEditComponent implements OnInit {
   newNickname: string;
   newPhone = { ddd: '', number: '', operator: '' };
 
+  maxSizeExceeded: boolean = false;
+  successfulUpload: boolean = false;
+
   constructor(private route: ActivatedRoute,
               private s3Service: S3Service,
               private dynamoService: DynamoService) { }
@@ -39,15 +42,22 @@ export class FamilyMemberEditComponent implements OnInit {
 
   submitPic() {
     if (this.pictureToUpload) {
+      this.maxSizeExceeded = false;
+      this.successfulUpload = false;
       const fileType = this.pictureToUpload.type;
       if (fileType === 'image/png' || fileType === 'image/jpeg') {
-        this.uploading = true;
-        this.s3Service.uploadImage(this.pictureToUpload, this.familyMember.familyId)
-          .then((res) => {
-            this.uploading = false;
-          }).catch((err) => {
-            this.uploading = false;
-          });
+        if (this.pictureToUpload.size > 1000000) {
+          this.maxSizeExceeded = true;
+        } else {
+          this.uploading = true;
+          this.s3Service.uploadImage(this.pictureToUpload, this.familyMember.familyId)
+            .then((res) => {
+              this.uploading = false;
+              this.successfulUpload = true;
+            }).catch((err) => {
+              this.uploading = false;
+            });
+        }
       }
     }
   }
@@ -57,13 +67,17 @@ export class FamilyMemberEditComponent implements OnInit {
   }
 
   nickName() {
-    this.familyMember.nicknames.push(this.newNickname);
-    this.newNickname = '';
+    if (this.newNickname) {
+      this.familyMember.nicknames.push(this.newNickname);
+      this.newNickname = '';
+    }
   }
 
   phone() {
-    this.familyMember.phones.push(this.newPhone);
-    this.newPhone = { ddd: '', number: '', operator: '' };
+    if (this.newPhone.number) {
+      this.familyMember.phones.push(this.newPhone);
+      this.newPhone = { ddd: '', number: '', operator: '' };
+    }
   }
 
   noPhone(phone: number) {

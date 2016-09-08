@@ -25,7 +25,7 @@ export class NameSearchComponent {
           .then((res) => {
             this.searching = false;
             this.searchResult = res;
-            if (this.searchResult.length == 0) {
+            if (this.searchResult.length === 0) {
               this.noResultMessage = true;
             }
           }).catch((err) => {
