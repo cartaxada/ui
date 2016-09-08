@@ -12,14 +12,24 @@ export class NameSearchComponent {
   searchQuery: string;
   searchResult: FamilyMember[];
 
+  searching: boolean = false;
+  noResultMessage: boolean = false;
+
   constructor(private dynamoService: DynamoService) {}
 
   search() {
     if (this.searchQuery && this.searchQuery.trim()) {
+      this.searching = true;
+      this.noResultMessage = false;
       this.dynamoService.searchByName(this.searchQuery.trim())
           .then((res) => {
+            this.searching = false;
             this.searchResult = res;
+            if (this.searchResult.length == 0) {
+              this.noResultMessage = true;
+            }
           }).catch((err) => {
+            this.searching = false;
             console.log(JSON.stringify(err));
           });
     }
