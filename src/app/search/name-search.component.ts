@@ -33,6 +33,6 @@ export class NameSearchComponent {
             console.log(JSON.stringify(err));
           });
     }
-}
+  }
 
 }

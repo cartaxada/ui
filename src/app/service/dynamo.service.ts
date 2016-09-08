@@ -30,6 +30,36 @@ export class DynamoService {
     });
   }
 
+  familyMemberById(ids: string[]): Promise<FamilyMember[]> {
+    this.cognitoService.refresh();
+    const tableName = Configuration.dynamoDbTable;
+
+    let keysArray: any[] = [];
+    for (let i = 0; i < ids.length; i++) {
+      keysArray.push( { familyId : ids[i] + ':1' });
+    }
+    let requestItems = {}
+    requestItems[tableName] = {
+      Keys : keysArray,
+      AttributesToGet: ['familyId', 'name']
+    }
+
+    const params = { RequestItems: requestItems };
+
+    return new Promise((resolve, reject) => {
+      const docClient = new AWS.DynamoDB.DocumentClient();
+      docClient.batchGet(params, function(err: any, data: any) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        } else {
+          resolve(data['Responses'][Configuration.dynamoDbTable]);
+        }
+      });
+    });
+
+  }
+
   updateFamilyMember(familyMember: FamilyMember): Promise<FamilyMember> {
     this.cognitoService.refresh();
     const params = {

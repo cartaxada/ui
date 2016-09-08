@@ -1,6 +1,12 @@
 <h3>Sobre</h3>
 <br />
-
+<ol class="breadcrumb">
+  <li *ngFor="let bc of breadcrumbs">
+    <a [routerLink]="['/family-member', bc.familyId]" >
+      {{bc.name}}
+    </a>
+  </li>
+</ol>
 <div *ngFor="let familyMember of familyMembers" class="family-member-view">
   <div class="row">
     <div class="col-md-3">
