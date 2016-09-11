@@ -38,11 +38,11 @@ export class DynamoService {
     for (let i = 0; i < ids.length; i++) {
       keysArray.push( { familyId : ids[i] + ':1' });
     }
-    let requestItems = {}
+    let requestItems = {};
     requestItems[tableName] = {
       Keys : keysArray,
       AttributesToGet: ['familyId', 'name']
-    }
+    };
 
     const params = { RequestItems: requestItems };
 
