@@ -2,7 +2,7 @@
 <br />
 <ol class="breadcrumb">
   <li *ngFor="let bc of breadcrumbs">
-    <a [routerLink]="['/family-member', bc.familyId]" >
+    <a class="capitalized" [routerLink]="['/family-member', bc.familyId]" >
       {{bc.name}}
     </a>
   </li>
@@ -13,7 +13,7 @@
       <img class="img-responsive img-rounded" src="https://s3.amazonaws.com/{{pictureBucket}}-resized/250x250/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
     </div>
     <div class="col-md-9">
-      <b>Nome:</b> {{familyMember.name}}<br>
+      <b>Nome:</b> <span class="capitalized">{{familyMember.name}}</span><br>
       <b>Apelidos:</b> {{familyMember.nicknames}}<br>
       <b>Aniversário:</b> {{familyMember.birthday}}<br>
       <b>Email:</b> {{familyMember.email}}<br>
