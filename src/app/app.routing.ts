@@ -1,6 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SecureAppComponent } from './app.component';
+import { SecureAppComponent, LogOutComponent } from './app.component';
 import { HomeComponent } from './constant/constant.component';
 import { AuthGuard } from './service/auth-guard.service';
 
@@ -15,6 +15,7 @@ const appRoutes: Routes = [
     component: SecureAppComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: 'logout', component: LogOutComponent },
       { path: '', component: HomeComponent }
     ]
   }

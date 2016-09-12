@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CognitoService } from './service/cognito.service';
 import '../../public/css/styles.css';
 
@@ -17,6 +18,18 @@ export class SecureAppComponent implements OnInit {
 
   ngOnInit() {
     this.cognitoService.refresh();
+  }
+
+}
+
+@Component({
+  template: ''
+})
+export class LogOutComponent {
+
+  constructor(private cognitoService: CognitoService, private router: Router) {
+    this.cognitoService.logOut();
+    this.router.navigate(['/login']);
   }
 
 }
