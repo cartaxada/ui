@@ -18,6 +18,7 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   login() {
+    console.log('attempting to login');
     if (!this.username || !this.password) {
       return;
     }
@@ -26,10 +27,13 @@ export class LoginComponent {
       Password : this.password,
     };
 
+    console.log('creating AWS specific entities');
     const authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
     const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
     const userData = { Username : this.username, Pool : userPool };
     const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    console.log('calling authenticateUser');
     cognitoUser.authenticateUser(authenticationDetails, this);
   }
 
