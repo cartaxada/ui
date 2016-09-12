@@ -89,8 +89,10 @@ export class FamilyMemberEditComponent implements OnInit {
   }
 
   saveEdit() {
-    console.log(JSON.stringify(this.familyMember));
-    this.dynamoService.updateFamilyMember(this.familyMember);
+    if (this.familyMember.name && this.familyMember.email && this.familyMember.birthday) {
+      this.familyMember.name = this.familyMember.name.toLowerCase();
+      this.dynamoService.updateFamilyMember(this.familyMember);
+    }
   }
 
 }

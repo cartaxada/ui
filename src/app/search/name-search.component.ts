@@ -21,7 +21,7 @@ export class NameSearchComponent {
     if (this.searchQuery && this.searchQuery.trim()) {
       this.searching = true;
       this.noResultMessage = false;
-      this.dynamoService.searchByName(this.searchQuery.trim())
+      this.dynamoService.searchByName(this.searchQuery.trim().toLowerCase())
           .then((res) => {
             this.searching = false;
             this.searchResult = res;
