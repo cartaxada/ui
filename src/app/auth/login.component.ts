@@ -7,7 +7,7 @@ const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 
 @Component({
   template: require('./login.template.html'),
-  styles: [require('./login.style.css')]
+  styles: [require('./auth.style.css')]
 })
 export class LoginComponent {
   username: string;
