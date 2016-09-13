@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { LoginComponent } from './login.component';
 import { ForgotPasswordComponent } from './forgot-password.component';
+import { ResetPasswordComponent } from './reset-password.component';
 import { loginRouting } from './login.routing';
 
 @NgModule({
@@ -14,7 +15,8 @@ import { loginRouting } from './login.routing';
   ],
   declarations: [
     LoginComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ]
 })
 export class LoginModule {}
