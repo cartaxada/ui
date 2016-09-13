@@ -5,6 +5,10 @@ const AWS = require('aws-sdk');
 const AmazonCognitoIdentity = require('amazon-cognito-identity-js');
 const jwtDecode = require('jwt-decode');
 
+export interface CognitoCallback {
+  cognitoCallback(err: any, result: any): void;
+}
+
 @Injectable()
 export class CognitoService {
 
@@ -53,6 +57,28 @@ export class CognitoService {
       });
     }
 
+  }
+
+  forgotPassword(username: string, callback: CognitoCallback) {
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
+    const userData = {
+      Username: username,
+      Pool: userPool
+    };
+
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    cognitoUser.forgotPassword({
+      onSuccess: function (result: any) {
+        callback.cognitoCallback(null, result);
+      },
+      onFailure: function (err: any) {
+        callback.cognitoCallback(err, null);
+      },
+      inputVerificationCode() {
+        callback.cognitoCallback(null, null);
+      }
+    });
   }
 
   getCurrentUserName(): Promise<string> {
