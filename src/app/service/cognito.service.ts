@@ -81,6 +81,25 @@ export class CognitoService {
     });
   }
 
+  resetPassword(username: string, verificationCode: string, password: string, callback: CognitoCallback) {
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
+    const userData = {
+      Username: username,
+      Pool: userPool
+    };
+
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    cognitoUser.confirmPassword(verificationCode, password, {
+      onSuccess: function (result: any) {
+        callback.cognitoCallback(null, result);
+      },
+      onFailure: function (err: any) {
+        callback.cognitoCallback(err, null);
+      }
+    });
+  }
+
   getCurrentUserName(): Promise<string> {
     const cognitoUser = this.getCurrentUser();
 

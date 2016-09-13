@@ -7,7 +7,7 @@ import { ResetPasswordComponent } from './reset-password.component';
 const authRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent }
+  { path: 'reset-password/:username', component: ResetPasswordComponent }
 ];
 
 export const authRouting: ModuleWithProviders = RouterModule.forChild(authRoutes);
