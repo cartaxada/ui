@@ -19,16 +19,20 @@ export class FamilyMemberViewComponent implements OnInit {
   ngOnInit() {
     this.route.data.forEach((data: { familyMembersResult: FamilyMember[] }) => {
       this.familyMembers = data.familyMembersResult;
-      this.dynamoService.familyMemberById(this.calculateBreadcrumbIds())
-          .then((res) => {
-            this.breadcrumbs = res.sort((a, b) => {
-              return a.familyId.length - b.familyId.length;
+      const breadcrumbIds = this.calculateBreadcrumbIds();
+      if (breadcrumbIds.length === 0) {
+        this.breadcrumbs = [];
+      } else {
+        this.dynamoService.familyMemberById(breadcrumbIds)
+            .then((res) => {
+              this.breadcrumbs = res.sort((a, b) => {
+                return a.familyId.length - b.familyId.length;
+              });
+            }).catch((err) => {
+              console.log(err);
             });
-          }).catch((err) => {
-            console.log(err);
-          });
+      }
     });
-
   }
 
   private calculateBreadcrumbIds(): string[] {
