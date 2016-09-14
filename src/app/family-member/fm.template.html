@@ -13,11 +13,54 @@
       <img class="img-responsive img-rounded" src="https://s3.amazonaws.com/{{pictureBucket}}-resized/250x250/{{familyMember.familyId}}" onerror="this.onerror=null;this.src='http://placehold.it/250?text=.';">
     </div>
     <div class="col-md-9">
-      <b>Nome:</b> <span class="capitalized">{{familyMember.name}}</span><br>
-      <b>Apelidos:</b> {{familyMember.nicknames}}<br>
-      <b>Aniversário:</b> {{familyMember.birthday}}<br>
-      <b>Email:</b> {{familyMember.email}}<br>
-      <b>Endereço:</b>{{familyMember.address}}<br>
+      <div class="row">
+        <div class="col-md-2">
+          <b>Nome:</b>
+        </div>
+        <div class="col-md-6">
+          <span class="capitalized">{{familyMember.name}}</span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <b>Apelidos:</b>
+        </div>
+        <div class="col-md-6">
+          {{familyMember.nicknames}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <b>Aniversário:</b>
+        </div>
+        <div class="col-md-6">
+          {{familyMember.birthday}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <b>Email:</b>
+        </div>
+        <div class="col-md-6">
+          {{familyMember.email}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <b>Endereço:</b>
+        </div>
+        <div class="col-md-6" *ngIf="familyMember.address">
+          {{familyMember.address.firstLine ? familyMember.address.firstLine : ''}} <br>
+          {{familyMember.address.secondLine ? familyMember.address.secondLine : ''}} <br>
+          {{familyMember.address.thirdLine ? familyMember.address.thirdLine : ''}}
+        </div>
+      </div>
+
+      <br>
       <b>Telefone(s):</b>
       <ul class="list-group">
         <li *ngFor="let phone of familyMember.phones" class="list-group-item">
