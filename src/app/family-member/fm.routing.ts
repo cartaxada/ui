@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FamilyMemberListComponent } from './fm-list.component';
 import { SecureAppComponent } from '../app.component';
 import { AuthGuard } from '../service/auth-guard.service';
-import { FamilyListResolver } from './fm-list.resolver';
 import { FamilyMemberResolver } from './fm.resolver';
 import { FamilyMemberToEditResolver } from './fm-edit.resolver';
 import { FamilyMemberViewComponent } from './fm.component';
@@ -17,8 +16,7 @@ const familyMemberRoutes: Routes = [
     children: [
       {
         path: '',
-        component: FamilyMemberListComponent,
-        resolve: { familyMembersResult: FamilyListResolver }
+        component: FamilyMemberListComponent
       },
       {
         path: ':familyId/edit',

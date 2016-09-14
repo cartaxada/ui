@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { FamilyMemberListComponent } from './fm-list.component';
 import { FamilyMemberViewComponent } from './fm.component';
 import { familyMemberRouting } from './fm.routing';
-import { FamilyListResolver } from './fm-list.resolver.ts';
 import { FamilyMemberResolver } from './fm.resolver.ts';
 import { FamilyMemberToEditResolver } from './fm-edit.resolver';
 import { FamilyMemberEditComponent } from './fm-edit.component';
@@ -22,7 +21,6 @@ import { FamilyMemberEditComponent } from './fm-edit.component';
     FamilyMemberEditComponent
   ],
   providers: [
-    FamilyListResolver,
     FamilyMemberResolver,
     FamilyMemberToEditResolver
   ]

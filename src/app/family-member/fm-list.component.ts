@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FamilyMember } from './fm.model';
+import { DynamoService } from '../service/dynamo.service';
 
 @Component({
   template: require('./fm-list.template.html')
@@ -8,13 +8,20 @@ import { FamilyMember } from './fm.model';
 export class FamilyMemberListComponent implements OnInit {
 
   familyMembers: FamilyMember[];
+  searching: boolean = false;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private dynamoService: DynamoService) {  }
 
   ngOnInit() {
-    this.route.data.forEach((data: { familyMembersResult: FamilyMember[] }) => {
-      this.familyMembers = data.familyMembersResult;
-    });
+    this.searching = true;
+    this.dynamoService.familyMemberList()
+        .then((res: FamilyMember[]) => {
+          this.searching = false;
+          this.familyMembers = res;
+        }).catch((err: any) => {
+          this.searching = false;
+          console.log(JSON.stringify(err));
+        });
   }
 
 }
