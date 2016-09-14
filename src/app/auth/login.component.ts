@@ -15,12 +15,15 @@ export class LoginComponent {
 
   message: string;
 
+  executing: boolean = false;
+
   constructor(private router: Router) {}
 
   login() {
     if (!this.username || !this.password) {
       return;
     }
+    this.executing = true;
     const authenticationData = {
       Username : this.username,
       Password : this.password,
@@ -35,6 +38,7 @@ export class LoginComponent {
 
   // tslint:disable
   private onSuccess(result: any) {
+    this.executing = false;
     const loginsHash = {};
     loginsHash[Configuration.identityLoginKey] = result.getIdToken().getJwtToken();
 
@@ -46,6 +50,7 @@ export class LoginComponent {
   }
 
   private onFailure(err: any) {
+    this.executing = false;
     if (err.code === 'UserNotFoundException') {
       this.message = 'Usuário não existe';
     } else if (err.code === 'NotAuthorizedException') {
