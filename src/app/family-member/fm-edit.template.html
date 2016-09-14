@@ -1,4 +1,12 @@
-<div class="panel panel-default">
+<div *ngIf="familyMemberNotFound" class="row text-center">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="alert alert-info">
+      Pessoa com esse identificador não encontrada
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!familyMemberNotFound" class="panel panel-default">
   <div class="panel-heading">Editar Foto</div>
   <div class="panel-body">
     <div class="row">
@@ -36,7 +44,7 @@
   </div>
 </div>
 
-<div class="panel panel-default">
+<div *ngIf="!familyMemberNotFound" class="panel panel-default">
   <div class="panel-heading">Editar Dados</div>
   <div class="panel-body">
     <div class="form-horizontal">

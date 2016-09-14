@@ -27,21 +27,27 @@ export class FamilyMemberEditComponent implements OnInit {
   emptyBirthday: boolean = false;
   errorMessage: string = '';
 
+  familyMemberNotFound: boolean = false;
+
   constructor(private route: ActivatedRoute,
               private s3Service: S3Service,
               private dynamoService: DynamoService) { }
 
   ngOnInit() {
     this.route.data.forEach((data: { familyMemberResult: FamilyMember }) => {
-      this.familyMember = data.familyMemberResult;
-      if (!this.familyMember.address) {
-        this.familyMember.address = {};
-      }
-      if (!this.familyMember.nicknames) {
-        this.familyMember.nicknames = [];
-      }
-      if (!this.familyMember.phones) {
-        this.familyMember.phones = [];
+      if (!data.familyMemberResult) {
+        this.familyMemberNotFound = true;
+      } else {
+        this.familyMember = data.familyMemberResult;
+        if (!this.familyMember.address) {
+          this.familyMember.address = {};
+        }
+        if (!this.familyMember.nicknames) {
+          this.familyMember.nicknames = [];
+        }
+        if (!this.familyMember.phones) {
+          this.familyMember.phones = [];
+        }
       }
     });
   }
