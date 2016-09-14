@@ -20,6 +20,12 @@ export class FamilyMemberEditComponent implements OnInit {
 
   maxSizeExceeded: boolean = false;
   successfulUpload: boolean = false;
+  successfulEdit: boolean = false;
+  emptyNickname: boolean = false;
+  emptyPhoneNumber: boolean = false;
+  emptyName: boolean = false;
+  emptyBirthday: boolean = false;
+  errorMessage: string = '';
 
   constructor(private route: ActivatedRoute,
               private s3Service: S3Service,
@@ -68,15 +74,21 @@ export class FamilyMemberEditComponent implements OnInit {
 
   nickName() {
     if (this.newNickname) {
+      this.emptyNickname = false;
       this.familyMember.nicknames.push(this.newNickname);
       this.newNickname = '';
+    } else {
+      this.emptyNickname = true;
     }
   }
 
   phone() {
     if (this.newPhone.number) {
+      this.emptyPhoneNumber = false;
       this.familyMember.phones.push(this.newPhone);
       this.newPhone = { ddd: '', number: '', operator: '' };
+    } else {
+      this.emptyPhoneNumber = true;
     }
   }
 
@@ -89,9 +101,27 @@ export class FamilyMemberEditComponent implements OnInit {
   }
 
   saveEdit() {
+    this.errorMessage = '';
+    this.successfulEdit = false;
+    this.emptyName = false;
+    this.emptyBirthday = false;
+
     if (this.familyMember.name && this.familyMember.birthday) {
       this.familyMember.name = this.familyMember.name.toLowerCase();
-      this.dynamoService.updateFamilyMember(this.familyMember);
+      this.dynamoService.updateFamilyMember(this.familyMember)
+          .then((res) => {
+            this.successfulEdit = true;
+          }).catch((err) => {
+            this.errorMessage = 'Algo estranho aconteceu! :(';
+          });
+    } else {
+      this.errorMessage = 'Problemas no preenchimento';
+      if (!this.familyMember.name) {
+        this.emptyName = true;
+      }
+      if (!this.familyMember.birthday) {
+        this.emptyBirthday = true;
+      }
     }
   }
 
