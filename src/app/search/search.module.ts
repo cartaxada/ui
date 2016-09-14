@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { NameSearchComponent } from './name-search.component';
-import { HierarchySearchComponent } from './hierarchy-search.component';
+import { InitialHierarchySearchComponent, HierarchySearchComponent } from './hierarchy-search.component';
 
 import { searchRouting } from './search.routing';
 
@@ -16,6 +16,7 @@ import { searchRouting } from './search.routing';
   ],
   declarations: [
     NameSearchComponent,
+    InitialHierarchySearchComponent,
     HierarchySearchComponent
   ]
 })

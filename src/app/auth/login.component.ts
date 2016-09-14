@@ -56,7 +56,7 @@ export class LoginComponent {
     } else if (err.code === 'NotAuthorizedException') {
       this.message = 'Combinação usuário e senha invalida';
     } else {
-      this.message = 'Algo estranho aconteçeu :(';
+      this.message = 'Algo estranho aconteceu :(';
     }
   }
   // tslint:enable

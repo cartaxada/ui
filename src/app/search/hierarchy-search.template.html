@@ -33,7 +33,7 @@
             </div>
 
             <div class="btn-group" role="group">
-              <button type="button" (click)="chosenFM(familyMember)" class="btn btn-info">
+              <button type="button" [routerLink]="['/search/hierarchy', familyMember.familyId]" class="btn btn-info">
                 <span class="glyphicon glyphicon-plus"></span>
               </button>
             </div>
