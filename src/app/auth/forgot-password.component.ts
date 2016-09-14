@@ -16,14 +16,18 @@ export class ForgotPasswordComponent implements CognitoCallback {
   sendCode() {
     this.errMessage = '';
     this.successful = false;
-    if (this.username) {
-      this.cognitoService.forgotPassword(this.username, this);
+    if (this.username && this.username.trim()) {
+      this.cognitoService.forgotPassword(this.username.trim(), this);
     }
   }
 
   cognitoCallback(err: any, result: any) {
     if (err !== null) {
-      this.errMessage = err.message;
+      if (err.code === 'UserNotFoundException') {
+        this.errMessage = 'Usuário não existe';
+      } else {
+        this.errMessage = 'Algo estranho aconteceu :(';
+      }
     } else {
       this.successful = true;
     }
