@@ -18,7 +18,9 @@ export class FamilyMemberViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.forEach((data: { familyMembersResult: FamilyMember[] }) => {
-      this.familyMembers = data.familyMembersResult;
+      this.familyMembers = data.familyMembersResult.sort((a, b) => {
+        return a.familyId.localeCompare(b.familyId);
+      });
       const breadcrumbIds = this.calculateBreadcrumbIds();
       if (breadcrumbIds.length === 0) {
         this.breadcrumbs = [];
