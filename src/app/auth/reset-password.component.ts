@@ -35,7 +35,13 @@ export class ResetPasswordComponent implements OnInit, CognitoCallback {
 
   cognitoCallback(err: any, result: any) {
     if (err !== null) {
-      this.errMessage = err.message;
+      if (err.code === 'ExpiredCodeException') {
+        this.errMessage = 'Código Inválido';
+      } else if (err.code === 'InvalidParameterException') {
+        this.errMessage = 'Senha deve ter no minimo 8 caracteres';
+      } else {
+        this.errMessage = 'Algo estranho aconteceu :(';
+      }
     } else {
       this.successful = true;
     }
