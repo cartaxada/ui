@@ -1,0 +1,15 @@
+<div class="login-page">
+  <div class="form">
+    <div *ngIf="errMessage" class="alert alert-danger" role="alert">
+      {{errMessage}}
+    </div>
+    <div *ngIf="successful" class="alert alert-success" role="alert">
+      Usuário Confirmado com Sucesso!
+      Por favor utilize a funcionalidade 'Esqueci Senha' para configurar sua senha
+    </div>
+    <form class="login-form">
+      <input type="text" placeholder="código de verificação" [(ngModel)]="verificationCode" name="verificationCode" >
+      <button class="btn btn-default" (click)="confirmUser()">Confirmar Usuário</button>
+    </form>
+  </div>
+</div>

@@ -100,6 +100,24 @@ export class CognitoService {
     });
   }
 
+  confirmUser(username: string, confirmationCode: string, callback: CognitoCallback) {
+    const userPool = new AmazonCognitoIdentity.CognitoUserPool(Configuration.poolData);
+    const userData = {
+      Username: username,
+      Pool: userPool
+    };
+
+    const cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
+
+    cognitoUser.confirmRegistration(confirmationCode, true, function (err: any, result: any) {
+      if (err) {
+        callback.cognitoCallback(err, null);
+      } else {
+        callback.cognitoCallback(null, result);
+      }
+    });
+  }
+
   getCurrentUserName(): Promise<string> {
     const cognitoUser = this.getCurrentUser();
 
