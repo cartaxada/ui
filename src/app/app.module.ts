@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { AppComponent, SecureAppComponent, LogOutComponent } from './app.component';
+import { AppComponent, SecureAppComponent, LogOutComponent, NotFoundComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { NavBarModule } from './navbar/navbar.module';
 import { ConstantModule } from './constant/constant.module';
@@ -26,7 +26,8 @@ import { S3Service } from './service/s3.service';
   declarations: [
     AppComponent,
     SecureAppComponent,
-    LogOutComponent
+    LogOutComponent,
+    NotFoundComponent
   ],
   providers: [
     appRoutingProviders,

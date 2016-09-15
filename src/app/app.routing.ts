@@ -1,6 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SecureAppComponent, LogOutComponent } from './app.component';
+import { SecureAppComponent, LogOutComponent, NotFoundComponent } from './app.component';
 import { HomeComponent } from './constant/constant.component';
 import { AuthGuard } from './service/auth-guard.service';
 
@@ -18,6 +18,10 @@ const appRoutes: Routes = [
       { path: 'logout', component: LogOutComponent },
       { path: '', component: HomeComponent }
     ]
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

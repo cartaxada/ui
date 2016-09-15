@@ -23,6 +23,13 @@ export class SecureAppComponent implements OnInit {
 }
 
 @Component({
+  template: require('./not-found.component.html')
+})
+export class NotFoundComponent {
+
+}
+
+@Component({
   template: ''
 })
 export class LogOutComponent {
